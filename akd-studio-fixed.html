@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AKD — Learning That Fits Your Life</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --cream:#F6E9C6; --slate:#54718A; --slate-deep:#41586C; --slate-pale:#7C93A4; --ink:#1E2B37; --paper:#FDFBF5; --focus:#D97757; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Work Sans',sans-serif; color:var(--ink); background:var(--paper); line-height:1.5; }
+    h1,h2,h3 { font-family:'Fraunces',serif; font-weight:500; line-height:1.08; letter-spacing:-.01em; }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
+    :focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+    .wrap { max-width:1120px; margin:0 auto; padding:0 32px; }
+    header { position:sticky; top:0; z-index:50; background:var(--paper); border-bottom:1px solid rgba(30,43,55,.08); }
+    .navbar { display:flex; align-items:center; justify-content:space-between; max-width:1120px; margin:0 auto; padding:22px 32px; }
+    .logo { font-family:'Fraunces',serif; font-size:1.3rem; letter-spacing:.06em; font-weight:600; }
+    nav ul { list-style:none; display:flex; gap:36px; font-size:.95rem; }
+    nav a { position:relative; padding:4px 0; }
+    nav a::after { content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px; background:var(--slate); transition:width .25s ease; }
+    nav a:hover::after { width:100%; }
+    .nav-cta { background:var(--slate); color:var(--paper); padding:10px 22px; border-radius:999px; font-size:.9rem; font-weight:500; transition:background .2s ease; }
+    .nav-cta:hover { background:var(--slate-deep); }
+    .menu-toggle { display:none; background:none; border:0; cursor:pointer; padding:8px; }
+    .menu-toggle span { display:block; width:24px; height:2px; margin:5px 0; background:var(--ink); }
+    .hero { background:var(--cream); padding:64px 0 72px; }
+    .hero-media { max-width:1120px; margin:0 auto 48px; padding:0 32px; }
+    .hero-media img { width:100%; height:clamp(220px,42vw,460px); object-fit:cover; border-radius:4px; }
+    .hero-copy { display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:start; max-width:1120px; margin:0 auto; padding:0 32px; }
+    .hero-copy h1 { font-size:clamp(2.1rem,4vw,3rem); }
+    .hero-copy .body-text p { margin-bottom:16px; font-size:1.02rem; opacity:.85; }
+    .eyebrow { display:block; margin-bottom:14px; color:var(--slate-deep); font-size:.78rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; }
+    .services { background:var(--cream); padding:24px 0 88px; }
+    .service-row { display:grid; grid-template-columns:88px 1fr auto; gap:24px; align-items:center; padding:26px 0; border-top:1px solid rgba(30,43,55,.14); }
+    .service-row:last-child { border-bottom:1px solid rgba(30,43,55,.14); }
+    .service-thumb { width:88px; height:88px; overflow:hidden; border-radius:4px; background:var(--slate-pale); }
+    .service-thumb img { width:100%; height:100%; object-fit:cover; }
+    .service-info h3 { margin-bottom:6px; font-size:1.15rem; }
+    .service-info p { max-width:46ch; font-size:.92rem; opacity:.75; }
+    .service-price { font-size:1.05rem; font-weight:500; white-space:nowrap; }
+    .course, .about { padding:80px 0; }
+    .course { background:var(--paper); }
+    .about { background:var(--cream); }
+    .section-copy { max-width:680px; }
+    .section-copy h2 { margin-bottom:16px; font-size:clamp(2rem,3.6vw,2.7rem); }
+    .contact { padding:80px 0; color:var(--paper); background:var(--slate); }
+    .contact .wrap { display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:start; }
+    .contact h2 { margin-bottom:16px; color:var(--cream); font-size:clamp(2rem,3.6vw,2.7rem); }
+    .contact-intro { max-width:38ch; opacity:.85; }
+    form { display:flex; flex-direction:column; gap:18px; }
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    label { display:block; margin-bottom:6px; font-size:.82rem; opacity:.85; }
+    input,textarea { width:100%; padding:12px 16px; color:var(--paper); border:1px solid rgba(253,251,245,.45); border-radius:999px; background:transparent; font:inherit; font-size:.95rem; }
+    textarea { min-height:110px; resize:vertical; border-radius:16px; }
+    input::placeholder,textarea::placeholder { color:rgba(253,251,245,.5); }
+    .checkbox-row { display:flex; align-items:center; gap:10px; font-size:.85rem; opacity:.85; }
+    .checkbox-row input { width:16px; height:16px; }
+    .checkbox-row label { margin:0; }
+    button[type=submit] { align-self:flex-start; padding:13px 30px; border:0; border-radius:999px; color:var(--ink); background:var(--cream); font:inherit; font-size:.95rem; font-weight:600; cursor:pointer; }
+    button[type=submit]:hover { background:#EBD693; }
+    .form-status { min-height:1.5em; font-size:.9rem; }
+    footer { padding:36px 0; color:var(--ink); background:var(--slate-pale); }
+    footer .wrap { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:12px; }
+    footer .title { font-family:'Fraunces',serif; font-size:1.1rem; }
+    footer small { display:block; margin-top:4px; opacity:.7; }
+    @media (max-width:820px) {
+      .navbar { position:relative; }
+      nav ul { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:18px; padding:20px 32px; background:var(--paper); border-bottom:1px solid rgba(30,43,55,.08); }
+      nav ul.is-open { display:flex; }
+      .menu-toggle { display:block; }
+      .hero-copy, .contact .wrap, .field-row { grid-template-columns:1fr; }
+      .hero-copy { gap:24px; }
+      .service-row { grid-template-columns:64px 1fr; row-gap:8px; }
+      .service-thumb { width:64px; height:64px; }
+      .service-price { grid-column:2; }
+    }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a class="logo" href="#top" aria-label="AKD home">AKD</a>
+      <nav aria-label="Main navigation">
+        <ul id="primary-navigation">
+          <li><a href="#services">Services</a></li><li><a href="#course">Course</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="#contact" class="nav-cta">Get started</a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="primary-navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-media"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Bright wood-paneled studio atrium with a central staircase and lounge seating"></div>
+      <div class="hero-copy"><div><span class="eyebrow">AKD Workshops &amp; Studio</span><h1>Learning That Fits Your Life</h1></div><div class="body-text"><p>Education should feel welcoming, not overwhelming. That's why we break big ideas into clear, friendly steps — so you can grow skills at a pace that feels right for you.</p><p>From one-on-one support to targeted workshops, we focus on practical strategies you can start using today. Together, we'll turn challenges into confident wins.</p></div></div>
+    </section>
+    <section class="services" id="services"><div class="wrap">
+      <div class="service-row"><div class="service-thumb"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Students gathered around an architecture model"></div><div class="service-info"><h3>Architecture Workshop</h3><p>Collaborate, design, and build real-world solutions under professional mentorship.</p></div><div class="service-price">$499.00</div></div>
+      <div class="service-row"><div class="service-thumb"><img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Rows of handmade ceramic pots"></div><div class="service-info"><h3>Ceramics Workshop</h3><p>Shape your vision into handcrafted ceramic art during our guided studio session.</p></div><div class="service-price">$89.00</div></div>
+      <div class="service-row"><div class="service-thumb"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Speaker presenting to a seated group"></div><div class="service-info"><h3>Guest Lecture</h3><p>Inspire students with a captivating guest lecture tailored to your course objectives.</p></div><div class="service-price">$750.00</div></div>
+      <div class="service-row"><div class="service-thumb"><img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Artist working on an abstract painting"></div><div class="service-info"><h3>Abstract Painting Class</h3><p>Unlock your creative voice with our guided abstract painting session.</p></div><div class="service-price">$75.00</div></div>
+    </div></section>
+    <section class="course" id="course"><div class="wrap section-copy"><h2>Courses made practical</h2><p>Our short, focused courses pair expert guidance with hands-on practice, so you leave with useful skills and the confidence to apply them.</p></div></section>
+    <section class="about" id="about"><div class="wrap section-copy"><h2>About AKD</h2><p>AKD is a welcoming studio and workshop space for curious, hands-on learners. We make room for progress at every level.</p></div></section>
+    <section class="contact" id="contact"><div class="wrap"><div><h2>Ready to Get Started?</h2><p class="contact-intro">Tell us what you need and we'll get back to you with a personalized plan — let's achieve your goals together!</p></div><form id="contact-form"><div class="field-row"><div><label for="fname">First name</label><input id="fname" name="firstName" type="text" autocomplete="given-name" placeholder="First name" required></div><div><label for="lname">Last name</label><input id="lname" name="lastName" type="text" autocomplete="family-name" placeholder="Last name" required></div></div><div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div><div class="checkbox-row"><input type="checkbox" id="news" name="news"><label for="news">Sign up for news and updates</label></div><div><label for="message">Message</label><textarea id="message" name="message" placeholder="What are you hoping to learn?" required></textarea></div><button type="submit">Submit</button><p class="form-status" role="status" aria-live="polite"></p></form></div></section>
+  </main>
+  <footer><div class="wrap"><div><div class="title">AKD</div><small>Studio &amp; workshop space for hands-on learners</small></div><a class="email" href="mailto:hello@akdstudio.com">hello@akdstudio.com</a></div></footer>
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const navList = document.querySelector('#primary-navigation');
+    toggle.addEventListener('click', () => { const open = navList.classList.toggle('is-open'); toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); });
+    navList.addEventListener('click', event => { if (event.target.matches('a')) { navList.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open menu'); } });
+    document.querySelector('#contact-form').addEventListener('submit', event => { event.preventDefault(); const form = event.currentTarget; form.querySelector('.form-status').textContent = 'Thanks — your message is ready to send. Connect this form to a server or form service to receive submissions.'; form.querySelector('button[type="submit"]').textContent = 'Message prepared'; });
+  </script>
+</body>
+</html>
